@@ -1,0 +1,74 @@
+In simple terms, Arweave is a tool to help anyone store data permanently. It works by distributing stored information across a network of computers called nodes or miners. This differs from the model we know because the internet today is in the hands of a select few companies whose servers can go down at any time – or editors who can change information silently.
+
+Arweave serves the ‘permaweb’ – a parallel internet – from a wide network of nodes, all of which earn money by providing existing data over a long period of time and storing new data on request.
+
+Like many decentralized storage platforms, Arweave runs services using its own native cryptocurrency – AR. When people spend AR to store data, miners earn it. AR is also stored from these transactions inside an endowment that is able to slowly drip rewards out for a technically unlimited period of time. Through that mechanism, Arweave guarantees infinite permanent storage.
+
+Some novel features that make Arweave stand out are the fact it’s accessible through the traditional web browser. Another feature is that it’s open source, so the community can participate in improving it. The community is a big part in many aspects as Arweave also has a voting mechanism that allows its users to moderate content and flag it as illicit and a thriving ecosystem of new app developers.
+
+Unlike the usual blockchain (storing chains of blocks that contain transactions) Arweave stores data in a graph of blocks. This way, each block is linked to two earlier blocks forming a structure called a “blockweave”. 
+
+There are several key aspects that make Arweave unique:
+• Proof of Access Consensus
+• Bundles
+• SmartWeave
+• Vartex Gateways
+• Content moderation
+
+These features make Arweave stand out and we will look at each of them closer to see how they work and why they matter. 
+
+Arweave differs from other cryptocurrencies by the way it checks for the accuracy of transactions. Normally, a “proof of work” system is used where a cryptocurrency asks for the computers to compete to solve a mathematical puzzle (hashing). Arweave uses a different method for this problem, called SPoRA (Succinct Proofs of Random Access).
+
+Arweave asks each node in the network to check that a new block of transactions contains a randomly selected block from earlier as well. If it’s present, then new transactions can be added to the network.
+
+This consensus mechanism helps to verify that new transactions are accurate and confirm that the old transactions have not been tampered with. This method is called “proof of access”, and the node that adds a new block gets AR tokens as a reward.
+
+Bundles are a way to guarantee a set of transactions will be eventually mined into a block. It addresses a problem that every blockchain has, which is that transactions can be rejected in cases where other people are submitting transactions that reward miners more.
+
+Bundles became necessary when Arweave caught on as a way to store big NFT projects with thousands of media files that all need uploading at once. Projects might find that a few from the batch they uploaded were dropped, and it’d ruin the project’s upload.
+
+The Solana NFT marketplace Metaplex was the first adopter of bundles and worked with Josh Benaron at Bundlr to develop Metaplex Candy Machine, an application that allows projects to upload bulk batches of NFTs using Arweave as the storage layer. However, it is used commonly for non-NFT based projects too.
+
+SmartWeave is a smart contract protocol that uses the AR token to enable developers to build smart contract applications using JavaScript. Like most code, it’s run by the users’ computer, not the blockchain itself.
+
+The way it works is unlike the Ethereum method of contract execution where the entire network is called to verify a transaction; SmartWeave relies on the smart contract user to do it themselves, client side.
+
+It doesn’t need as much computing power, making it a greener option, but also it’s safer. If someone uses malicious code, it doesn’t then affect the entire blockchain. This way, it doesn’t need as many safety checks and safety harnesses and can run faster, too.
+
+Another notable feature is that SmartWeave contracts can be the entire backend for an application. That means developers don’t need a server and the whole application can be run from the blockchain. Unlike Ethereum, interacting with SmartWeave contracts costs less than 1 cent.
+
+Arweave has its own currency – the AR token. Users who want to store data must buy it to pay for storage. In turn, computers providing storage must accept AR tokens as payment. Interestingly though, the payment doesn’t go directly to each user but rather pooled and distributed over time to the network.
+
+This pool of fees is known as the Storage Endowment. The aim is to future-proof data from this pool of overcharged AR. Its fees are paid by users for mining rewards. Because this pool grows over time, it is able to cover future payouts for miners over a long period.
+
+It is important to add that storage on Arweave is a one-time payment rather than a subscription-based plan. The data, however, is stored permanently. This makes Arweave appealing to both – the customer and the network, making it a currency with true utility.
+
+The AR token has a limited supply of 66 million. Check this guide for how to get it anywhere in the world.
+
+Bundlr started out as a solution to both scale Arweave and reduce pain points experienced by developers. Our horizontal and linear scaling solutions radically increased transactions per second, from 9 TPS on Arweave directly to more than 50,000 TPS when using Bundlr.
+
+When uploading to Arweave, you pay for uploads in their native token AR, and sign the transaction using their native cryptography. The AR token isn’t widely available, and the cryptography needed to sign transactions isn’t as familiar to Web3 developers as the cryptography used by Ethereum and Solana. We eased this pain point by including support for 14 different tokens and their related cryptography. Developers can pay using the tokens they have and sign using any private key, including those from Solana and Ethereum.
+
+When uploading to Arweave, data is priced in increments of 256KB. This means if you upload 1KB or 255KB you pay the same. We eased this pain point by charging a straight fee per byte. You only pay for the data you need, no more.
+
+When uploading to Arweave, your transaction is considered confirmed once it’s included in a block. Your transaction is considered final once 50 confirmations have passed. With a block time of 2 minutes, it takes roughly 100 minutes before a transaction uploaded to Arweave can be considered final. Transaction finality is important, because in the event of a blockchain fork, only finalized transactions are guaranteed not to be dropped. We eased this pain point and streamlined the upload process by introducing optimistic finality. More on this in the next section.
+
+Aeons is a DApp for storing and managing files on Arweave using Bundlr.network and Warp smart contracts
+
+Unlike Ardrive, Aeons uses bundlr network to upload files to the arweave network which allows files to be viewed and accessed instantly and lets the users pay through tokens other than AR Token such as Ethers, Matic etc
+
+Aeons uses smart contracts based on SmartWeave protocol created using warp contracts. An instance of the smart contract is created for each user to manage the state of that user’s drive. The state of a user contract contains a data structure that stores information about each file in the drive’s file hierarchy and defines the relationship between the files such as parent-child relationship. To be specific, each file stores information such as the transaction id used to upload the file data, it’s file name, content type, size in bytes and a children list storing the ids of each child. We also store the contract owner’s address in the contract state which is used to filter out malicious interactions created by other users. in addition to this, the state also stores an internal owner address which is a secondary wallet address that is associated to the owner. the secondary wallet which is generated by the application, is used in cases where the primary wallet is behind a signing service such as metamask and using it will create poor user experience as every interaction would need to be signed by the user.
+
+Aeons smart contract consists of multiple actions, specifically - insert, relocate, rename
+
+• insert - action representing an insert operation that inserts the transaction id of a file into the data structure storing the file hierarchy
+• relocate - action representing a relocation, that moves a file from one folder to another
+• rename - action that changes the name associated to a file
+
+Aeons uses an internal wallet for encrypting file keys using ECIES encryption and also signing transactions for smart contract interactions, this is done to avoid prompting a signature for every user action which would resuilt in poor UX
+
+Aeons encrypts every file with AES-CBC algorithm using a randomly generated key and the key is then encrypted using the internal wallet's public key (ECIES algorithm) and the encrypted file data along with the key is uploaded to arweave. later on fetching the files, they encrypted key is decrypted using the public key of the internal wallet and used to decrypt the file data, this ensures that only the user (who has access to their internal wallet) can view their files
+
+currently Aeons allows users to connect to bundlr network through Ethereum, Polygon Mainnet, Avalanche Network C-Chain, Arbitrum one and Boba Network chains.
+
+You can fund your bundlr internal wallet in Aeons by clicking the button with wallet icon on top right corner and then clicking the "Fund" button
