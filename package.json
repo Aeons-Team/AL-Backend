@@ -9,7 +9,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@elastic/elasticsearch": "^8.7.0",
     "@pinecone-database/pinecone": "^0.0.14",
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
