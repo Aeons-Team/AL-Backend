@@ -26,21 +26,21 @@ const message = async (socket: Socket, convo: Conversation, db: PineconeStore, m
 
     const handler = BaseCallbackHandler.fromMethods({
         handleLLMStart(llm: { name: string }, prompts: string[], runId: string) {
-            socket.emit('message-start')
+            socket.emit('response-start')
         },
     
         handleLLMEnd(output: LLMResult, runId: string) {
             socket.data.busy = false
-            socket.emit('message-end')
+            socket.emit('response-end')
         },
 
         handleLLMNewToken(token: string, runId: string) {
-            socket.emit('message-text', { text: token })
+            socket.emit('response-text', { text: token })
         },
 
         handleLLMError(error: any, runId: string) {
             socket.data.busy = false
-            socket.emit('message-error', error)
+            socket.emit('response-error', error)
         }
     })
 
