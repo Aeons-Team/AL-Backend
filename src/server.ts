@@ -20,6 +20,8 @@ const openAIEmbeddings = new OpenAIEmbeddings({
     openAIApiKey: process.env.OPEN_AI_API_KEY
 })
 
+const initialMessage = 'Hey there, I am Ava, Aeons GPT powered chat assistant, How may I help you?'
+
 async function prepare(): Promise<PineconeStore> {
     const { PINECONE_API_KEY, PINECONE_ENVIRONMENT, PINECONE_INDEX_NAME } = process.env
     
@@ -96,6 +98,8 @@ async function setup() {
         const convo: Conversation = {
             history: new ChatMessageHistory()
         }
+
+        convo.history.addAIChatMessage(initialMessage)
 
         socket.on('message', (msg: Message) => message(socket, convo, db, msg))
 
