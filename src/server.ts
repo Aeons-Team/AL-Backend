@@ -1,9 +1,6 @@
 import * as dotenv from 'dotenv'
 dotenv.config()
 
-import express from 'express'
-import http from 'http'
-import cors from 'cors'
 import path from 'path'
 import { Server } from 'socket.io'
 import { PineconeStore } from 'langchain/vectorstores/pinecone'
@@ -83,12 +80,7 @@ async function prepare(): Promise<PineconeStore> {
 async function setup() {
     const db = await prepare()
 
-    const app = express()
-    app.use(cors({ origin: '*' }))
-
-    const server = http.createServer(app)
-
-    const io = new Server(server, {
+    const io = new Server({
         cors: {
             origin: '*',
             methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
@@ -112,10 +104,7 @@ async function setup() {
     })
 
     const port = parseInt(process.env.PORT ?? "80")
-
-    server.listen(port, async () => {
-        console.log(`listening to port ${port}`)
-    })
+    io.listen(port)
 }
 
 setup()
