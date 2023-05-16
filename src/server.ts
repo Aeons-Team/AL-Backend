@@ -84,13 +84,15 @@ async function setup() {
     const db = await prepare()
 
     const app = express()
-    app.use(cors())
+    app.use(cors({ origin: '*' }))
 
     const server = http.createServer(app)
 
     const io = new Server(server, {
         cors: {
-            origin: '*'
+            origin: '*',
+            methods: ['GET'],
+            credentials: false
         }
     })
 
