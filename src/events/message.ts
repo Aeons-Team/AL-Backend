@@ -21,8 +21,8 @@ const message = async (socket: Socket, convo: Conversation, db: PineconeStore, m
 
     await Promise.all(topContent.map(text => convo.history.addUserMessage(text)))
 
+    await convo.history.addUserMessage(msg.text)
     const messages = await convo.history.getMessages()
-    convo.history.addUserMessage(msg.text)
 
     const handler = BaseCallbackHandler.fromMethods({
         handleLLMStart(llm: { name: string }, prompts: string[], runId: string) {
@@ -45,7 +45,7 @@ const message = async (socket: Socket, convo: Conversation, db: PineconeStore, m
     })
 
     const reply = await openAIChat.call(messages, undefined, [handler])
-    convo.history.addAIChatMessage(reply.text)
+    await convo.history.addAIChatMessage(reply.text)
 }
 
 export default message

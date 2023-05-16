@@ -95,12 +95,12 @@ async function setup() {
         }
     })
 
-    io.on('connection', (socket) => {
+    io.on('connection', async (socket) => {
         const convo: Conversation = {
             history: new ChatMessageHistory()
         }
 
-        convo.history.addAIChatMessage(initialMessage)
+        await convo.history.addAIChatMessage(initialMessage)
 
         socket.on('message', (msg: Message) => message(socket, convo, db, msg))
 
