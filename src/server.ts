@@ -85,8 +85,7 @@ async function setup() {
             origin: '*',
             methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
             credentials: true
-        },
-        transports: ['websocket']
+        }
     })
 
     io.on('connection', (socket) => {
