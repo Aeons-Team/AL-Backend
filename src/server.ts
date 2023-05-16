@@ -82,10 +82,11 @@ async function setup() {
 
     const io = new Server({
         cors: {
-            origin: true,
+            origin: '*',
             methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-            credentials: false
-        }
+            credentials: true
+        },
+        transports: ['websocket']
     })
 
     io.on('connection', (socket) => {
