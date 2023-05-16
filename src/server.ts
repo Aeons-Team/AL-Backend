@@ -91,7 +91,7 @@ async function setup() {
     const io = new Server(server, {
         cors: {
             origin: '*',
-            methods: ['GET'],
+            methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
             credentials: false
         }
     })
